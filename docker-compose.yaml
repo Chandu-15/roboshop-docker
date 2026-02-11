@@ -34,6 +34,8 @@ services:
   shipping:
       image: chandana137/shipping:v1
       container_name: shipping
+      expose:
+        - "8080"
       depends_on:
         - cart
         - mysql
