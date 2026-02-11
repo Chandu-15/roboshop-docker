@@ -7,7 +7,51 @@ services:
     container_name: catalogue
     depends_on:
       - mongodb
-      
+  redis:
+    image: redis:7
+    container_name: redis
+  rabbitmq:
+    image: rabbitmq:3
+    container_name: rabbitmq
+    environments:
+      RABBITMQ_DEFAULT_USER: roboshop
+      RABBITMQ_DEFAULT_PASSWORD: roboshop123
+  cart:
+      image: chandana137/cart:v1
+      container_name: cart
+      depends_on:
+          - redis
+          - catalogue
+  user:
+     image: chandana137/user:v1
+     container_name: user
+     depends_on:
+        - redis
+        - mongodb
+  shipping:
+      image: chandana137/shipping:v1
+      container_name: shipping
+      depends_on:
+        - cart
+        - mysql
+  payment:
+     image: chandana137/payment:v1
+     container_name: payment
+     depends_on:
+      - cart
+      - user
+      - rabbitmq
+  frontend:
+     image: chandana137/frontend:v1
+     container_name: frontend
+     ports:
+      - "80:80"
+     depends_on:
+      - cart
+      - user
+      - shipping
+      - payment
+      - catalogue
 networks:
   default:
       driver: bridge
