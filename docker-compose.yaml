@@ -2,6 +2,12 @@ services:
   mongodb:
     image: chandana137/mongodb:v1
     container_name: mongodb
+  catalogue:
+    image: chandana137/catalogue:v1
+    container_name: catalogue
+    depends_on:
+      - mongodb
+      
 networks:
   default:
       driver: bridge
