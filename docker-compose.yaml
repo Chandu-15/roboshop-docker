@@ -10,6 +10,9 @@ services:
   redis:
     image: redis:7
     container_name: redis
+  mysql:
+    image: chandana137/mysql:v1
+    container_name: mysql
   rabbitmq:
     image: rabbitmq:3
     container_name: rabbitmq
