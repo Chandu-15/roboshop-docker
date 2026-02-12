@@ -91,10 +91,10 @@ services:
       - payment
       - catalogue
 volumes:
-  - mongodb:
-  - mysql:
-  - rabbitmq:
-  - redis:
+   mongodb:
+   mysql:
+   rabbitmq:
+   redis:
 networks:
   default:
       driver: bridge
