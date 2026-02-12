@@ -45,7 +45,7 @@ services:
       test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
       interval: 5s
       timeout: 5s
-      retries: 5
+      retries: 20
 
   cart:
     image: chandana137/cart:v1
