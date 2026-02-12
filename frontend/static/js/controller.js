@@ -217,8 +217,8 @@
 
         $scope.rateProduct = function(score) {
             console.log('rate product', $scope.data.product.sku, score);
-            var url = '/api/ratings/api/rate/' + $scope.data.product.sku + '/' + score;
-            $http({
+           // var url = '/api/ratings/api/rate/' + $scope.data.product.sku + '/' + score;
+           /* $http({
                 url: url,
                 method: 'PUT'
             }).then((res) => {
@@ -228,6 +228,8 @@
             }).catch((e) => {
                 console.log('ERROR', e);
             });
+            */
+            return;
         };
         
         $scope.glowstan = function(vote, val) {
@@ -251,14 +253,15 @@
         }
 
         function loadRating(sku) {
-            $http({
+            /* $http({
                 url: '/api/ratings/api/fetch/' + sku,
                 method: 'GET'
             }).then((res) => {
                 $scope.data.rating = res.data;
             }).catch((e) => {
                 console.log('ERROR', e);
-            });
+            }); */
+            return;
         }
 
         function clearMessage() {
