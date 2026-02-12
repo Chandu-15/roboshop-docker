@@ -8,13 +8,14 @@ RUN mvn clean package && \
 
 FROM eclipse-temurin:17-jre-alpine
 WORKDIR /opt/server
+RUN addgroup -S roboshop && adduser -S roboshop -G roboshop
 EXPOSE 8080
 LABEL com.project="roboshop" \
       component="catalogue" \
       created_by="shiva kumar"
 ENV CART_ENDPOINT="cart:8080" \
     DB_HOST="mysql"
-COPY --from=build /opt/server/shipping.jar /opt/server
+COPY --from=build --chown=roboshop:roboshop /opt/server/shipping.jar /opt/server
 ENTRYPOINT ["sh","-c","sleep 30 && java -jar shipping.jar" ]
 
 # FROM maven:3.9.11
