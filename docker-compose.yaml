@@ -1,5 +1,8 @@
 services:
   mongodb:
+    build: 
+      context: ./mongodb
+      dockerfile: Dockerfile
     image: chandana137/mongodb:v1
     container_name: mongodb
     expose:
@@ -8,6 +11,7 @@ services:
       - mongodb:/data/db
 
   catalogue:
+    build: ./catalogue
     image: chandana137/catalogue:v1
     container_name: catalogue
     expose:
@@ -24,6 +28,7 @@ services:
       - redis:/data
 
   mysql:
+    build: ./mysql
     image: chandana137/mysql:v1
     container_name: mysql
     expose:
@@ -48,6 +53,7 @@ services:
       retries: 20
 
   cart:
+    build: ./cart
     image: chandana137/cart:v1
     container_name: cart
     expose:
@@ -57,6 +63,7 @@ services:
       - catalogue
 
   user:
+    build: ./user
     image: chandana137/user:v1
     container_name: user
     expose:
@@ -66,6 +73,7 @@ services:
       - mongodb
 
   shipping:
+    build: ./shipping
     image: chandana137/shipping:v1
     container_name: shipping
     expose:
@@ -75,6 +83,7 @@ services:
       - mysql
 
   payment:
+    build: ./payment
     image: chandana137/payment:v1
     container_name: payment
     expose:
@@ -94,6 +103,7 @@ services:
         condition: service_started
 
   frontend:
+    build: ./frontend
     image: chandana137/frontend:v1
     container_name: frontend
     ports:
